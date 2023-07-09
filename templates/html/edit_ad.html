@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Website</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="/js/scripts.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <p><a href="/">Website</a></p>
+            </div>
+
+            <div class="search">
+                <p>
+                    <input type="text" placeholder="Search..">
+                </p>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div class="countries">
+                <p>
+                    <select id="countrySelectBox" onchange="EditFindCountry();">
+                        <option value="AllOfBelarus">All of Belarus</option>
+                        <option value="Minsk">Minsk</option>
+                        <option value="Brest">Brest</option>
+                        <option value="Grodno">Grodno</option>
+                        <option value="Gomel">Gomel</option>
+                        <option value="Vitebsk">Vitebsk</option>
+                        <option value="Mogilev">Mogilev</option>
+                      </select>
+                </p>
+            </div>
+
+            {{ if ne .User.Email "" }}
+                <div class="user-empty-block">ㅤ</div>
+                <a href="/place_ad">
+                    <div class="header-place-ad">
+                        <p><i class="fa fa-plus"> Place ad</i></p>
+                    </div>
+                </a>
+                <div class="user-empty-block2">ㅤ</div>
+                <div class="profile">
+                    <p> {{ .User.Name }} <span class="test" style="font-size: 10px;">&#9662;</span></p>
+                    <div class="dropdown-content">
+                        <a href="/my_ads"><i class="fa fa-folder"></i> My ads</a>
+                        <a href="/messages"><i class="fa fa-wechat"></i> Messages</a>
+                        <a href="/favorites"><i class="fa fa-star"></i> Favorites</a>
+                        {{ if ne .User.RoleID 1 }}
+                            <a href="/all_ads"><i class="fa fa-archive"></i> All ads</a>
+                            <a href="/users"><i class="fa fa-users"></i> Users</a>
+                        {{ end }}
+                        <a href="/settings"><i class="fa fa-gear"></i> Settings</a>
+                        <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                      </div>
+                </div>
+            {{ else }}
+                <div class="guest-empty-block">ㅤ</div>
+                <div class="sign-in" onclick="ShowMenu('signInMenu')">
+                    <div class="login-button"><p><i class="fa fa-sign-in"> Login</i></p></div>
+                </div>
+
+                <div class="login" onclick="ShowMenu('loginMenu')">
+                    <div class="sign-in-button"><p><i class="fa fa-user-plus"> Sign In</i></p></div>
+                </div> 
+            {{ end }} 
+        </div>
+
+        <form action="/edit_ad" method="POST" enctype="multipart/form-data">
+            <div class="place-ad-body">
+                <h2>Ad editing</h2>
+                <div class="place-ad-name">
+                    <h4>Name of goods</h4>
+                    <input type="text" name="id" value="{{ .Ad.ID }}" hidden>
+                    <input class="input-place-ad-name" name="nameOfGoods" type="text" value="{{ .Ad.NameOfGoods }}" placeholder="For example, MacBook Air" minlength="5">
+                </div>
+
+                <h4>Photos</h4>
+                <div class="input-div">
+                    <input id="photos" type="file" class="file" name="images" multiple="multiple" accept="image/jpeg, image/png, image/jpg">
+                    <p class="t1"><span class="place-ad-add-photo"><i class="fa fa-upload"></i> Add photo</span> <span style="font-family: Arial, sans-serif;;"> Or drag it here</span></p>
+                    <p class="place-ad-add-photo-description">Use real photos of your product from different angles. Maximum size: 10 MB.</p>
+                </div>
+
+                <output id="photo-list">
+                    {{ range $i, $key := .Ad.Images }}
+                        <div class="image">
+                            <img name="img{{ $i }}" src="/images/{{ $key }}" alt="image" onclick="alert(this.src)">
+                            <span onclick="deleteImage('{{ $i }}')">&times;</span>
+                        </div> 
+                    {{ end }}
+                </output>
+
+                <div class="place-ad-category">
+                    <h4>Category</h4>
+                    <select class="place-ad-category-select-box" name="category" onchange="EditFindCountry();">
+                        {{ range .Categories }}
+                            {{ if eq .ID 1 }}
+                                <option value="{{ .ID }}" selected> {{ .Name }}</option>
+                            {{ else }}
+                                <option value="{{ .ID }}"> {{ .Name }}</option>
+                            {{ end }}
+                        {{ end }}
+                    </select>
+                </div>
+
+                <div class="place-ad-overview">
+                    <h4>Overview</h4>
+                    <textarea class="place-ad-overveiw" name="overview" type="text" rows="10" cols="60" minlength="12">{{ .Ad.Overview }} </textarea>
+                </div>
+
+                <div class="place-ad-price">
+                    <h4>Price</h4>
+                    <input class="input-place-ad-price" name="price" type="text" value="{{ .Ad.Price }}" placeholder="For exaple: 0.99" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    <input class="input-place-ad-currency" type="text" placeholder="p." readonly>
+                </div>
+
+                <div class="place-ad-location">
+                    <h4>Location</h4>
+                    <div class="countries">
+                        <select id="countrySelectBox" name="location" onchange="EditFindCountry();">
+                            <option value="Minsk">Minsk</option>
+                            <option value="Brest">Brest</option>
+                            <option value="Grodno">Grodno</option>
+                            <option value="Gomel">Gomel</option>
+                            <option value="Vitebsk">Vitebsk</option>
+                            <option value="Mogilev">Mogilev</option>
+                            </select>
+                    </div>
+                    <br>
+                </div>
+
+                <h4>About the seller</h4>
+                <div class="place-ad-seller">
+                    <p class="place-ad-name-price">Name</p>
+                    <input class="input-place-ad-seller-name" type="text" name="name" placeholder="For example, Miron" value="{{ .User.Name }}" minlength="3">
+                    <p class="place-ad-name-price">Email</p>
+                    <input class="input-place-ad-seller-email" type="email" placeholder="Email" value="{{ .User.Email }}" readonly>
+                    <p class="place-ad-name-price">Phone</p>
+                    <input class="input-place-ad-seller-phone" id="phone" type="tel" name="phone" placeholder="+375 (__) ___-__-__" value="{{ .Ad.Phone}}" pattern="+375 ([0-9]{2}) [0-9]{3}-[0-9]{2}-[0-9]{2}">
+                </div>
+
+                <button class="place-ad-button">Edit ad</button>
+            </form>
+
+            <div class="place-ad-footer"></div>
+        </div>
+
+        <script>
+            const inputDiv = document.querySelector(".input-div")
+            const input = document.querySelector("#photos")
+            const output = document.querySelector("output")
+            let imagesArray = []
+
+            input.addEventListener("change", () => {
+                const files = input.files
+                for (let i = 0; i < files.length; i++) {
+                    imagesArray.push(files[i])
+                }
+                displayImages()
+            })
+
+            inputDiv.addEventListener("drop", () => {
+                e.preventDefault()
+                const files = e.dataTransfer.files
+                for (let i = 0; i < files.length; i++) {
+                    if (!files[i].type.match("image")) continue;
+
+                    if (imagesArray.every(image => image.name !== files[i].name))
+                    imagesArray.push(files[i])
+                }
+                displayImages()
+            })
+
+            function displayImages() {
+                let images = ""
+                imagesArray.forEach((image, index) => {
+                    images += `<div class="image">
+                                <img src="${URL.createObjectURL(image)}" alt="image">
+                                <span onclick="deleteImage(${index})">&times;</span>
+                            </div>`
+                })
+
+                if (images == ""){
+                    document.getElementById("photo-list").style.display = "none"
+                }
+                else {
+                    document.getElementById("photo-list").style.display = "flex"
+                }
+                output.innerHTML = images
+            }
+
+            function deleteImage(index) {
+                imagesArray.splice(index, 1)
+                displayImages()
+            }
+
+            window.addEventListener("DOMContentLoaded", function() {
+                [].forEach.call( document.querySelectorAll('.input-place-ad-seller-phone'), function(input) {
+                    var keyCode;
+                    function mask(event) {
+                        event.keyCode && (keyCode = event.keyCode);
+                        var pos = this.selectionStart;
+                        if (pos < 3) event.preventDefault();
+                        var matrix = "+375 (__) ___-__-__",
+                            i = 0,
+                            def = matrix.replace(/\D/g, ""),
+                            val = this.value.replace(/\D/g, ""),
+                            new_value = matrix.replace(/[_\d]/g, function(a) {
+                                return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+                            });
+                        i = new_value.indexOf("_");
+                        if (i != -1) {
+                            i < 5 && (i = 3);
+                            new_value = new_value.slice(0, i)
+                        }
+                        var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+                            function(a) {
+                                return "\\d{1," + a.length + "}"
+                            }).replace(/[+()]/g, "\\$&");
+                        reg = new RegExp("^" + reg + "$");
+                        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+                        if (event.type == "blur" && this.value.length < 5)  this.value = ""
+                    }
+
+                    input.addEventListener("input", mask, false);
+                    input.addEventListener("focus", mask, false);
+                    input.addEventListener("blur", mask, false);
+                    input.addEventListener("keydown", mask, false)
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Website</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="/js/scripts.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                <p><a href="/">Website</a></p>
+            </div>
+
+            <div class="search">
+                <p>
+                    <input type="text" placeholder="Search..">
+                </p>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div class="countries">
+                <p>
+                    <select id="countrySelectBox" onchange="EditFindCountry();">
+                        <option value="All Of Belarus">All of Belarus</option>
+                        <option value="Minsk">Minsk</option>
+                        <option value="Brest">Brest</option>
+                        <option value="Grodno">Grodno</option>
+                        <option value="Gomel">Gomel</option>
+                        <option value="Vitebsk">Vitebsk</option>
+                        <option value="Mogilev">Mogilev</option>
+                      </select>
+                </p>
+            </div>
+
+            {{ if ne .User.Email "" }}
+                <div class="user-empty-block">ㅤ</div>
+                <a href="/place_ad">
+                    <div class="header-place-ad">
+                        <p><i class="fa fa-plus"> Place ad</i></p>
+                    </div>
+                </a>
+                <div class="user-empty-block2">ㅤ</div>
+                <div class="profile">
+                    <p> {{ .User.Name }} <span class="test" style="font-size: 10px;">&#9662;</span></p>
+                    <div class="dropdown-content">
+                        <a href="/my_ads"><i class="fa fa-folder"></i> My ads</a>
+                        <a href="/messages"><i class="fa fa-wechat"></i> Messages</a>
+                        <a href="/favorites"><i class="fa fa-star"></i> Favorites</a>
+                        {{ if ne .User.RoleID 1 }}
+                            <a href="/all_ads"><i class="fa fa-archive"></i> All ads</a>
+                            <a href="/users"><i class="fa fa-users"></i> Users</a>
+                        {{ end }}
+                        <a href="/settings"><i class="fa fa-gear"></i> Settings</a>
+                        <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                      </div>
+                </div>
+            {{ else }}
+                <div class="guest-empty-block">ㅤ</div>
+                <div class="sign-in" onclick="ShowMenu('signInMenu')">
+                    <div class="login-button"><p><i class="fa fa-sign-in"> Login</i></p></div>
+                </div>
+
+                <div class="login" onclick="ShowMenu('loginMenu')">
+                    <div class="sign-in-button"><p><i class="fa fa-user-plus"> Sign In</i></p></div>
+                </div> 
+            {{ end }} 
+        </div>
+
+        <div class="category">
+            {{ range .Categories }}
+                <div> <a href="/category/{{ .ID }}">{{ .Name }}</a></div>
+            {{ end }}
+        </div>
+
+        <div class="ads">
+            <h2 id="whereFind">All ads in Belarus</h2>
+
+            {{ range .Ads }}
+                <a class="ad-full-link" href="/ad/{{ .ID }}">
+                    <div class="ad">
+                        <div class="ad-image">
+                            <img src="/images/{{ index .Images 0 }}" alt="">
+                            {{ if ne $.User.ID 0}}
+                                {{ if .IsFavorite }}
+                                    <div class="favorite-icon-selected"><i class="fa fa-star" onclick="return Favorite(this, '{{ .ID }}')"></i></div>
+                                {{ else }}
+                                    <div class="favorite-icon"><i class="fa fa-star" onclick="return Favorite(this, '{{ .ID }}')"></i></div>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                        <div class="ad-descript">
+                            <p>
+                                <b>{{ .Price }} p.</b><br>
+                                <span class="ad-name">{{ .NameOfGoods }}</span> <br>
+                                <span class="ad-city">{{ .Location }}</span> <br>
+                                <span class="ad-date-time">{{ .PostTime }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            {{ end }}
+        </div>
+        
+        <div id="bg-menu" class="background-menu">
+            <div id="loginMenu" class="login-menu">
+                <div class="exit-menu">
+                    <p onclick="HideMenu('loginMenu')">&#9932;</p>
+                </div>
+
+                <h2 style="text-align: center;">Sign In</h2> <br>
+
+                <div class="sign-in-form">
+                    <form action="/sign_in" method="POST">
+                        <input type="text" placeholder="Name" name="name" minlength="3"> <br>
+                        <input type="email" placeholder="Email" name="email"> <br>
+                        <input id="inputPassword" type="password" placeholder="Password" name="password" minlength="5"> <i id="eyePassword" style="cursor: pointer;" onclick="EyePassword()" class="fa fa-eye-slash"></i><br>
+                        <input type="password" placeholder="Confirm password" name="confirmPassword" minlength="5"> <br> <br>
+                        <button>Create account</button>
+                    </form>
+
+                    <div class="is-have-account">
+                        <br>
+                        <p>Already have an account? <span class="log-in-here" onclick="ShowSignInMenu()">Log in here</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="signInMenu" class="sign-in-menu">
+                <div class="exit-menu">
+                    <p onclick="HideMenu('signInMenu')">&#9932;</p>
+                </div>
+
+                <h2 style="text-align: center;">Login</h2> <br>
+
+                <div class="sign-in-form">
+                    <form action="/login" method="POST">
+                        <input type="email" placeholder="Email" name="email"> <br>
+                        <input id="inputPassword" type="password" placeholder="Password" name="password" minlength=""> <i id="eyePassword" style="cursor: pointer;" onclick="EyePassword()" class="fa fa-eye-slash"></i><br>
+                        <button>Login</button>
+                    </form>
+
+                    <div class="is-have-account">
+                        <br>
+                        <p>New to Website? <span class="log-in-here" onclick="ShowLoginMenu()">Create an account</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

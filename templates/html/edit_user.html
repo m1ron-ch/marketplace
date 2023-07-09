@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Website</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="/js/scripts.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <p><a href="/">Website</a></p>
+            </div>
+
+            <div class="search">
+                <p>
+                    <input type="text" placeholder="Search..">
+                </p>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div class="countries">
+                <p>
+                    <select id="countrySelectBox" onchange="EditFindCountry();">
+                        <option value="AllOfBelarus">All of Belarus</option>
+                        <option value="Minsk">Minsk</option>
+                        <option value="Brest">Brest</option>
+                        <option value="Grodno">Grodno</option>
+                        <option value="Gomel">Gomel</option>
+                        <option value="Vitebsk">Vitebsk</option>
+                        <option value="Mogilev">Mogilev</option>
+                      </select>
+                </p>
+            </div>
+
+            {{ if ne .AuthUser.Email "" }}
+                <div class="user-empty-block">ㅤ</div>
+                <a href="/place_ad">
+                    <div class="header-place-ad">
+                        <p><i class="fa fa-plus"> Place ad</i></p>
+                    </div>
+                </a>
+                <div class="user-empty-block2">ㅤ</div>
+                <div class="profile">
+                    <p> {{ .AuthUser.Name }} <span class="test" style="font-size: 10px;">&#9662;</span></p>
+                    <div class="dropdown-content">
+                        <a href="/my_ads"><i class="fa fa-folder"></i> My ads</a>
+                        <a href="/messages"><i class="fa fa-wechat"></i> Messages</a>
+                        <a href="/favorites"><i class="fa fa-star"></i> Favorites</a>
+                        {{ if ne .AuthUser.RoleID 1 }}
+                            <a href="/all_ads"><i class="fa fa-archive"></i> All ads</a>
+                            <a href="/users"><i class="fa fa-users"></i> Users</a>
+                        {{ end }}
+                        <a href="/settings"><i class="fa fa-gear"></i> Settings</a>
+                        <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                      </div>
+                </div>
+            {{ else }}
+                <div class="guest-empty-block">ㅤ</div>
+                <div class="sign-in" onclick="ShowMenu('signInMenu')">
+                    <div class="login-button"><p><i class="fa fa-sign-in"> Login</i></p></div>
+                </div>
+
+                <div class="login" onclick="ShowMenu('loginMenu')">
+                    <div class="sign-in-button"><p><i class="fa fa-user-plus"> Sign In</i></p></div>
+                </div> 
+            {{ end }} 
+        </div>
+
+        <form action="/edit_user" method="POST">
+            <div class="place-ad-body">
+                <h2>Edit user '{{ .EditUser.Name }}'</h2>
+                <div class="place-ad-name">
+                    <h4>Name</h4>
+                    <input class="input-place-ad-name" name="name" type="text" value="{{ .EditUser.Name }}" placeholder="For example, Ivan" minlength="3">
+                </div>
+    
+                <div class="place-ad-name">
+                    <h4>Email</h4>
+                    <input class="input-place-ad-name" name="email" type="text" value="{{ .EditUser.Email }}" placeholder="For example: example@example.com">
+                </div>
+    
+                <div class="place-ad-name">
+                    <h4>New password</h4>
+                    <input class="input-place-ad-name" name="password" type="text" minlength="5">
+                </div>
+                
+                <div class="place-ad-name">
+                    <h4>Phone</h4>
+                    <input class="input-place-ad-seller-phone" name="phone" type="text" placeholder="+375 (__) ___-__-__" value="{{ .EditUser.Phone }}">
+                </div>
+
+                <div class="place-ad-name">
+                    <h4>Role</h4>
+                    {{ if eq .EditUser.RoleID 0 }}
+                        <input class="input-place-ad-seller-email" name="role" type="text" value="User" readonly>
+                    {{ else if eq .EditUser.RoleID 1 }}
+                        <input class="input-place-ad-seller-email" name="role" type="text" value="Moderator" readonly>
+                    {{ else }}
+                        <input class="input-place-ad-seller-email" name="role" type="text" value="Administrator" readonly>
+                    {{ end }}
+                </div>
+
+                <div class="place-ad-name">
+                    <h4>Date of registration</h4>
+                    <input class="input-place-ad-seller-email" onload="SetRole('{{ .EditUser.RoleID }}')" type="text" value="{{ .EditUser.DateRegistration }}" readonly>
+                </div>
+    
+                <button class="place-ad-button">Save</button>
+
+                <div class="place-ad-footer"></div>
+
+            </div>
+        </form>
+
+        <div class="place-ad-footer"></div>
+        </div>
+    </body>
+</html>

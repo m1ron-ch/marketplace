@@ -1,0 +1,1009 @@
+body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    float: left;
+    border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+.logo {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}   
+
+.logo > p {
+    margin-top: 13%;
+}
+
+.logo > p > a {
+    color: black;
+    text-decoration: none;
+}
+
+.search {
+    width: 30%;
+    height: 100%;
+    float: left;
+    margin-bottom: 1%;
+}
+
+.search > p > input {
+    width: 95%;
+    height: 40px;
+    padding-left: 20px;
+    border: none;
+    float: left;
+    border-radius: 5px;
+    background-color: rgb(233, 233, 233);
+}
+
+.search > button {
+    position: relative;
+    width: 12%;
+    padding: 12px 20px;
+    margin-left: -12%;
+    border-radius: 5px;
+    border:  none;
+    background-color: rgb(233, 233, 233);
+}
+
+.countries {
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.countries > p {
+    text-align: center;
+}
+
+.countries > p > select {
+    width: 80%;
+    margin-top: 10px;
+}
+
+.sign-in, .login {
+    width: 10%;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+}
+
+.login > div, .sign-in > div {
+    margin-top: -2%;
+    margin-left: 20%;
+    text-align: center;
+}
+
+.sign-in-button, .login-button {
+    width: 80%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: rgb(21, 127, 247);
+}
+
+.sign-in-button > p, .login-button > p {
+    padding-top: 10%;
+    color: white;
+}
+
+.background-menu {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.381);
+}
+
+.login-menu {
+    width: 30%;
+    height: 80%;
+    position: relative;
+    display: none; 
+    margin-left: 35%;
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.sign-in-menu {
+    width: 30%;
+    height: 80%;
+    position: relative;
+    display: none; 
+    margin-left: 35%;
+    margin-top: 5%;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.exit-menu {
+    width: 100%;
+    height: 7%;
+}
+
+.exit-menu > p {
+    margin: 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    float: right;
+}
+
+.verification-body {
+    background: #f6f6f9;
+    padding: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verification-body > div {
+    margin-top: 25%;
+    text-align: center;
+    position:absolute;
+}
+  
+.verification-form {
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    max-width: 400px;
+    background: #fff;
+}
+
+.verification-form > h4 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.verification-form > p {
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.verification-footer {
+    list-style-type: none;
+}
+
+.verification-footer > li {
+    margin-right: 3em;
+    float: left;
+}
+
+.verification-footer > li > a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: black;
+    /* background-color: rgb(21, 127, 247); */
+}
+
+.verification-form > button {
+    margin-top: 7%;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    background-color: rgb(21, 127, 247);
+}
+
+.verification-form > button:hover,
+.sign-in-form > form > button:hover,
+.header-place-ad > p:hover,
+.place-ad-button:hover,
+.new-message button:hover {
+    background-color: rgb(19, 114, 223);
+}
+
+.verification-form > button:active,
+.sign-in-form > form > button:active,
+.header-place-ad > p:active,
+.place-ad-button:active,
+.new-message button:active {
+    background-color: rgb(18, 106, 207);
+}
+
+.form-control {
+    float: left;
+    width: 50px;
+    display: block;
+    height: 50px;
+    margin-right: 0.2rem;
+    text-align: center;
+    font-size: 1.25rem;
+    min-width: 0;
+}
+
+.sign-in-form {
+    width: 100%;
+    height: 20%;
+    /* text-align: center;
+    display:table-cell;
+    vertical-align:middle; */
+}
+
+.sign-in-form > form > input {
+    width: 50%;
+    height: 30px;
+    margin-left: 25%;
+    padding-left: 2%;
+    margin-bottom: 5%;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+.sign-in-form > form > button {
+    width: 120px;
+    height: 30px;
+    margin-left: 37%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 13px;
+    background-color: rgb(21, 127, 247);
+}
+
+.type-authorization {
+    width: 90%;
+    height: auto;
+    list-style: none;
+}
+
+.type-authorization > li {
+    width: 40%;
+    margin-left: 3%;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #eeeeee;
+}
+
+.is-have-account {
+    width: 100%;
+    height: 5%;
+    font-size: 15px;
+}
+
+.is-have-account > p {
+    text-align: center;
+}
+
+.log-in-here {
+    color: rgb(85, 41, 156);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.profile {
+    float: left;
+    width: 8%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.test {
+    display: none;
+}
+
+.profile:hover .test {
+    display: inline-block;
+}
+
+/* .profile {
+    position: relative;
+    display: inline-block;
+} */
+
+.profile > p {
+    margin-top: 23%;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.profile:hover .dropdown-content {display: block;}
+
+.profile:hover .dropbtn {background-color: #3e8e41;}
+
+.category {
+    display: block;
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 62%;
+    /* border-right: 1px solid rgb(227, 227, 227); */
+}
+
+.category > div {
+    margin-left: 5%;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.category > div > a {
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+}
+
+.guest-empty-block {
+    float: left; 
+    width: 23%; 
+    height: 100%; 
+}
+
+.user-empty-block {
+    float: left;
+    width: 26%; 
+    height: 100%; 
+}
+
+.user-empty-block2 {
+    float: left;
+    width: 2%; 
+    height: 100%; 
+}
+
+.header-place-ad {
+    float: left;
+    width: 8%;
+    height: 100%;
+}
+
+.header-place-ad > p {
+    text-align: center;
+    padding: 11px 0 11px 0px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(21, 127, 247);
+}
+
+.ads {
+    float: left;
+    position: relative;
+    width: 80%;
+    height: auto;
+}
+
+.ads-all {
+    float: left;
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.ad-all {
+    float: left;
+    width: 21.8%;
+    height: 60%;
+    margin-right: 3.2%;
+}
+
+.ad {
+    float: left;
+    width: 24.5%;
+    height: 60%;
+    margin-right: 0.5%;
+}
+
+.ad-image {
+    position:relative;
+    width:282px;
+    height:280px;
+    border-radius: 10px;
+    overflow:hidden;
+    background-color: #f4f4f4;
+}
+
+.ad-image > img {
+    max-width: 100%;
+    max-height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.ad-name {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ad-descript {
+    width: 100%;
+    height: 100%;
+}
+
+.ad-city, .ad-date-time {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(152, 152, 152);
+}
+
+.place-ad-body {
+    padding-top: 2%;
+    margin-left: 5%;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+.place-ad-name,
+.place-ad-category,
+.place-ad-photos {
+    width: auto;
+    height: 90px;
+}
+
+.place-ad-field-name,
+.place-ad-name-overview,
+.place-ad-name-price {
+    margin-bottom: 7px;
+}
+
+.input-place-ad-name,
+.input-place-ad-overview,
+.input-place-ad-price,
+.input-place-ad-currency,
+.input-place-ad-seller-name,
+.input-place-ad-seller-email,
+.input-place-ad-seller-phone {
+    width: 25%;
+    height: 35px;
+    padding-left: 1%;
+    font-size: 13px;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 7px;
+}
+
+.place-ad-category-select-box {
+    width: 15%;
+    height: 50px;
+    line-height: 50px; 
+    padding-left: 1%;
+    -webkit-appearance: none;
+    border: 1px solid rgb(227, 227, 227);
+    background-color: white;
+    
+}
+
+.input-div {
+    width: 50%;
+    height: 150px;
+    border-radius: 5px;
+    display: block;
+    border: 2px dotted rgb(227, 227, 227);
+    background-color: white;
+    position: relative;
+}
+
+.t1 {
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+.place-ad-add-photo-description {
+    padding-left: 5%;
+}
+  
+.file {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+output {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+    border-radius: 5px;
+}
+  
+output .image {
+    height: auto;
+    width: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    position: relative;
+}
+  
+output .image img {
+    position:relative;
+    width:282px;
+    height:auto;
+    border-radius: 10px;
+    overflow:hidden;
+}
+  
+output .image span {
+    position: absolute;
+    top: -4px;
+    right: 4px;
+    cursor: pointer;
+    font-size: 22px;
+    color: white;
+}
+  
+output .image span:hover {
+    opacity: 0.8;
+}
+  
+output .span--hidden {
+    visibility: hidden;
+}
+
+.place-ad-add-photo {
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    background-color: rgb(21, 127, 247);
+}
+
+.place-ad-add-photo-description {
+    font-size: 10px;
+    color: rgb(172, 172, 172);
+}
+
+.place-ad-overveiw {
+    -webkit-border-radius: 5px;
+    font-size: 15px;
+    border: 1px solid rgb(227, 227, 227);
+}
+
+.input-place-ad-price {
+    width: 8%;
+}
+
+.input-place-ad-currency {
+    width: 1.7%;
+}
+
+.place-ad-footer {
+    float: left;
+    position: absolute;
+    margin-left: -5%;
+    width: 100%;
+    height: 30%;
+}
+
+h4 {
+    margin-bottom: 0.5%;
+}
+
+.place-ad-button {
+    width: 26%;
+    border: none;
+    margin-top: 2%;
+    border-radius: 5px;
+    height: 50px;
+    color: white;
+    font-size: 15px;
+    background-color: rgb(21, 127, 247);
+}
+
+.input-place-ad-seller-email {
+    color: rgb(175, 175, 175);
+    background-color: rgb(245, 245, 245);
+}
+
+.ad-full-link {
+    text-decoration: none;
+    color: black;
+}
+
+.ad-options {
+    width: 100%;
+    height: auto;
+}
+
+.ad-options > span {
+    cursor: pointer;
+    margin-left: 3%;
+    float: right;
+}
+
+.edit-ad {
+    float: left;
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.users {
+    float: left;
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.user-columns {
+    width: 100%;
+}
+
+.user-columns > div {
+    margin-bottom: 0.7%;
+    font-size: 12px;
+    float: left;
+}
+
+.user-columns > a {
+    margin-right: 1%;
+}
+
+.user-id {
+    width: 2%;
+}
+
+.user-name {
+    width: 10%;
+}
+
+.user-email {
+    width: 20%;
+}
+
+.user-email {
+    width: 25%;
+}
+
+.user-password {
+    width: 20%;
+}
+
+.user-phone {
+    width: 12%;
+}
+
+.user-role {
+    width: 8%;
+}
+
+.user-date-registration {
+    width: 12%;
+}
+
+.all-ads {
+    display: flex;
+    position: relative;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.all-ad {
+    float: left;
+    width: 27.3%;
+    height: 60%;
+    margin: 0;
+    margin-right: 3%;
+}
+
+.all-ad-options {
+    width: 100%;
+    height: auto;
+}
+
+.all-ad-options > span {
+    cursor: pointer;
+    margin-left: 3%;
+    float: right;
+}
+
+.favorite-icon > i {
+    display: block;
+    border-radius: 25px;
+    padding: 1% 1% 1% 1%;
+    color: #2e2e2eb1;
+    font-size: 20px;
+    top: 2%;
+    right: 3%;
+    position: absolute;
+}
+
+.favorite-icon-selected > i {
+    display: block;
+    border-radius: 25px;
+    padding: 1% 1% 1% 1%;
+    color: rgb(242, 227, 97);
+    font-size: 20px;
+    top: 2%;
+    right: 3%;
+    position: absolute;
+}
+
+.favorite-icon {
+    display: none;
+}
+
+.ad-image:hover > .favorite-icon {
+    display: block;
+}
+
+.favorite-container {
+    width: 80%;
+    height: 600px;
+    text-align: center;
+}
+
+.favorite-container > p {
+    font-size: 25px;
+    padding-top: 20%;
+    color: #aaaaaa;
+}
+
+.ad-image-container {
+    width: 70%;
+    height: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.ad-description {
+    width: 10%;
+    height: 100px;
+    background-color: rgb(11, 145, 103);
+}
+
+.ad-container {
+    float:  left;
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.close {
+    color: rgb(227, 0, 0);
+    cursor: pointer;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+  
+.carousel-images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+  
+.carousel-images img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20px;
+    width: 30px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.503);
+}
+  
+.prev-btn {
+    left: 20px;
+}
+  
+.next-btn {
+    right: 20px;
+}
+
+.chat {
+    display: flex;
+    height: 90vh;
+    font-family: sans-serif;
+  }
+  
+.channels {
+    width: 200px;
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+  
+.channels h2 {
+    margin-bottom: 10px;
+}
+  
+.channels ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+  
+.channels li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.channels li.active {
+    background-color: #e4e4e4;
+}
+  
+.conversation {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+}
+  
+.conversation .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.conversation .header h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+  
+.conversation .header p {
+    margin: 0;
+    font-size: 0.8em;
+    color: #666;
+}
+  
+.messages {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.messages > div {
+    clear: both; 
+    display: block; 
+    position: relative;
+}
+
+.message {
+    width: max-content;
+    height: auto;
+    float: left;
+    padding: 10px 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #737373;
+}
+
+.message-sender {
+    width: max-content;
+    height: auto;
+    float: right;
+    padding: 10px 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #1d86d1;
+}
+  
+.message-time {
+    width: auto;
+    height: auto;
+    display: inline-block;
+    margin: 0;
+    vertical-align: bottom;
+    font-size: 10px;
+}
+
+.sender {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+  
+.text {
+    margin: 0;
+}
+  
+.new-message {
+    display: flex;
+    margin-top: 20px;
+}
+  
+.new-message input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+  
+.new-message button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 13px;
+    color:white;
+    background-color: rgb(21, 127, 247);
+}
+
+.message-container {
+    float:  left;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+ul > a { 
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.link {
+    color: black;
+}
+
+.no-messages > p {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 15%;
+    color: #aaaaaa;
+}
